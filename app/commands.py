@@ -26,7 +26,6 @@ class CommandsManager:
 
     def add_command(self, command):
         commands_list = self.get_commands()
-        print(command)
         commands_list.update(command)
         
         self.save_file(commands_list)
@@ -60,6 +59,21 @@ class CommandsManager:
         with open(self.filename, 'w') as json_file:
             json.dump(list_commands, json_file)  
 
-        with open('app\commands_fucns.py', 'w') as f:
-            for command in list_commands:
-                f.write(f'def {command}(bot, update):\n\tchat_id = update.message.chat_id\n\tbot.send_message(chat_id=chat_id, text="{list_commands[command]}")\n\n')
+
+
+
+"""
+/guidelines_specDocuments
+/guidelines_codeReview
+
+ The spec documents should always have:
+ 1. Title
+ 2. Divider after the title
+ 3. 
+
+
+
+
+
+
+"""
