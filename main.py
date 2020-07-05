@@ -1,12 +1,11 @@
-from app.messages import MessageManager
+from app.commands import CommandsManager
+from app.bot import BotTelegram
 
 def bot_telegram():
-    bot = MessageManager('app/message.json')
-    print(bot.get_messages())
-    message = {'other message': 'test'}
-    bot.add_message(message)
-    print(bot.update_message('other message', 'Update message'))
-    
+    commands_handler = CommandsManager('app\commands.json')
+    commands = commands_handler.get_commands()
+    bot = BotTelegram()
+    bot.add_commands(commands)
 
 if __name__ == "__main__":
     bot_telegram()
