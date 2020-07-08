@@ -1,23 +1,48 @@
+import sys
 from app.commands import CommandsManager
 from app.bot import BotTelegram
 
 def bot_telegram():
     bot = BotTelegram()
-    commands_handler = CommandsManager('app\commands.json')
     commands = commands_handler.get_commands()
     bot.add_commands(commands)
 
+
 def add_command():
-    pass
+    command = input('Type the name of the command: ')
+    content = input('Type the contents of the command: ')
+    message = commands_handler.add_command({command.strip(): content})
+
+    print(message)
+    print('--- ' * 5)
+
 
 def update_command():
-    pass
+    command = input('Type the name of the command: ')
+    content = input('Type the new content of the command: ')
+    message = commands_handler.update_command(command, content)
+
+    print(message)
+    print('--- ' * 5)
+
 
 def delete_command():
-    pass
+    command = input('Type the name of the command to be deleted: ')
+    message = commands_handler.delete_command(command)
+
+    print(message)
+    print('--- ' * 5)
+
 
 def print_commands():
-    pass
+    commands = commands_handler.get_commands()
+
+    for command in commands:
+        result = commands_handler.get_command(command)
+        print(f'{command} -> {result}')
+
+    print('--- ' * 5)
+
 
 def commands_manager():
     while True:
@@ -42,7 +67,7 @@ def commands_manager():
         elif option == 9:
             main()
         elif option == 0:
-            break
+            sys.exit()
 
 
 def main():
@@ -59,7 +84,7 @@ def main():
         elif option == 2:
             commands_manager()
         elif option == 0:
-            break
+            sys.exit()
 
 
 if __name__ == "__main__":
@@ -71,4 +96,5 @@ if __name__ == "__main__":
                      /___/                               
                         - REDA CHANEL -
     """)
+    commands_handler = CommandsManager('app\commands.json')
     main()
