@@ -21,7 +21,7 @@ class BotTelegram:
         """
         for cmd in commands:
             self.dispatcher.add_handler(
-                CommandHandler(cmd, lambda bot, update: bot.send_message(chat_id=update.message.chat_id, text=commands[cmd]))
+                CommandHandler(cmd, lambda bot, update: bot.send_message(chat_id=update.message.chat_id, text=commands[cmd], parse_mode='HTML'))
             )
 
     def __del__(self):
